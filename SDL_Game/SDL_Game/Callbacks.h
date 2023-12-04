@@ -11,6 +11,8 @@ namespace Callbacks
 
 	void LogIMGError(std::string message);
 
+	void LogMIXError(std::string message);
+
 	std::string FileNameToString(std::filesystem::directory_entry entry);
 }
 

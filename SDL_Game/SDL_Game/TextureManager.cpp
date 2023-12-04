@@ -28,7 +28,7 @@ bool TextureManager::LoadTextures()
 
 		if (!textureSurface)
 		{
-			Callbacks::LogSDLError("Failed To Load Image");
+			Callbacks::LogSDLError("Failed To Load Image " + Callbacks::FileNameToString(entry));
 			return false;
 		}
 

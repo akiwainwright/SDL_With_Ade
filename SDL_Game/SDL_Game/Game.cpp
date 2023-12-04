@@ -7,6 +7,7 @@
 
 #include "Callbacks.h"
 #include "TextureManager.h"
+#include "SoundManager.h"
 
 Game* Game::s_Instance = nullptr;
 
@@ -82,7 +83,7 @@ bool Game::StartSDL()
 bool Game::LoadAssets()
 {
 
-    return TextureManager::GetInstance()->LoadTextures();
+    return TextureManager::GetInstance()->LoadTextures() && SoundManager::GetInstance()->LoadSoundtrack() && SoundManager::GetInstance()->LoadSFX();
 }
 
 void Game::Upddate()
