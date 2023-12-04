@@ -6,6 +6,7 @@
 #include <SDL_ttf.h>
 
 #include "Callbacks.h"
+#include "TextureManager.h"
 
 Game* Game::s_Instance = nullptr;
 
@@ -21,6 +22,8 @@ Game* Game::GetInstance()
 
 Game::Game()
 {
+    m_DeltaTime = 0.16;
+
     m_Running = true;
 
     m_Window = nullptr;
@@ -78,18 +81,22 @@ bool Game::StartSDL()
 
 bool Game::LoadAssets()
 {
-    return false;
+
+    return TextureManager::GetInstance()->LoadTextures();
 }
 
 void Game::Upddate()
 {
-
+   
 }
 
 void Game::Render()
 {
     SDL_SetRenderDrawColor(m_Renderer, 0, 255, 247, 255);
     SDL_RenderClear(m_Renderer);
+
+    //TextureManager::GetInstance()->DrawTexture("Spider_Dance_soundtrack.png", 200, 200, 640, 480);
+    TextureManager::GetInstance()->DrawSpriteFrame("Skeleton enemy.png", 200, 200, 832, 320, 5, 13, 1, 5);
 
     SDL_RenderPresent(m_Renderer);
 }
@@ -112,4 +119,6 @@ Game::~Game()
 {
     s_Instance = nullptr;
     delete s_Instance;
+
+    
 }

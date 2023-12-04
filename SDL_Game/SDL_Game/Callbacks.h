@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <filesystem>
 
 
 namespace Callbacks
@@ -9,5 +10,7 @@ namespace Callbacks
 	void LogSDLError(std::string message);
 
 	void LogIMGError(std::string message);
+
+	std::string FileNameToString(std::filesystem::directory_entry entry);
 }
 

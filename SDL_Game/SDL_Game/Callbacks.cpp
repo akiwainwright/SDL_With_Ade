@@ -11,3 +11,8 @@ void Callbacks::LogIMGError(std::string message)
 {
 	std::cout << message << " " << IMG_GetError() << "\n";
 }
+
+std::string Callbacks::FileNameToString(std::filesystem::directory_entry entry)
+{
+	return entry.path().filename().string();
+}

@@ -13,6 +13,9 @@ public:
 	inline bool IsRunning() { return m_Running; }
 	inline void SetRunning(bool runState) { m_Running = runState; }
 
+	inline float GetDeltaTime() { return m_DeltaTime; }
+	inline void SetDeltatTime(float dt) { m_DeltaTime = dt; }
+
 	inline SDL_Window* GetWindow() { return m_Window; }
 	
 	inline SDL_Renderer* GetRenderer() { return m_Renderer; }
@@ -29,6 +32,8 @@ public:
 
 private:
 	bool m_Running;
+
+	float m_DeltaTime;
 
 	static Game* s_Instance;
 
