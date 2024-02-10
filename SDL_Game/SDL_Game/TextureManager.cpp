@@ -4,6 +4,7 @@
 #include "Callbacks.h"
 #include "Game.h"
 
+/*
 namespace fs = std::filesystem;
 
 TextureManager* TextureManager::s_Instance = nullptr;
@@ -65,3 +66,4 @@ TextureManager::TextureManager()
 TextureManager::~TextureManager()
 {
 }
+*/

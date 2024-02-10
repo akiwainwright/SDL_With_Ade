@@ -4,7 +4,7 @@
 #include <string>
 
 
-
+/*
 class TextureManager
 {
 public:
@@ -27,3 +27,4 @@ private:
 	TextureManager();
 };
 
+*/

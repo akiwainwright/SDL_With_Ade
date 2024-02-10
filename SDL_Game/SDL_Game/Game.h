@@ -1,46 +1,49 @@
+
 #pragma once
-
 #include <SDL.h>
-
-constexpr int windowWidth = 1280;
-constexpr int windowHeight = 720;
+#include "BasicIncludes.h"
 
 class Game
 {
 public:
-	static Game* GetInstance();
+	Game();
+	bool Initialize();
+	void RunLoop();
+	void Shutdown();
 
-	inline bool IsRunning() { return m_Running; }
-	inline void SetRunning(bool runState) { m_Running = runState; }
+	class Actor* GetActor(class Actor* _actor);
 
-	inline float GetDeltaTime() { return m_DeltaTime; }
-	inline void SetDeltatTime(float dt) { m_DeltaTime = dt; }
+	void AddActor(class Actor* _actor);
+	void RemoveActor(class Actor* _actor);
 
-	inline SDL_Window* GetWindow() { return m_Window; }
+	void AddSprite(class SpriteComponent* _sprite);
+	void RemoveSprite(class SpriteComponent* _sprite);
 	
-	inline SDL_Renderer* GetRenderer() { return m_Renderer; }
-
-	bool StartSDL();
-
-	bool LoadAssets();
-
-	void Upddate();
-	void Render();
-	void Events();
-
-	~Game();
-
+	SDL_Texture* GetTexture(const std::string& _fileName);
 private:
-	bool m_Running;
+	void ProcessInput();
+	void UpdateGame();
+	void GenerateOutput();
+	void LoadData();
+	void UnloadData();
+	
+	// Map of textures loaded
+	std::unordered_map<std::string, SDL_Texture*> m_Textures;
 
-	float m_DeltaTime;
+	// All the actors in the game
+	std::vector<class Actor*> m_Actors;
+	// Any pending actors
+	std::vector<class Actor*> m_PendingActors;
 
-	static Game* s_Instance;
+	// All the sprite components drawn
+	std::vector<class SpriteComponent*> m_Sprites;
 
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
-	SDL_Event m_Events;
+	Uint32 m_TicksCount;
+	bool m_IsRunning;
+	// Track if we're updating actors right now
+	bool m_UpdatingActors;
 
-	Game();
+	class Ship* m_Ship; // Player's ship
 };
-

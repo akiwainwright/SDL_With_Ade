@@ -2,7 +2,7 @@
 #include <SDL_mixer.h>
 #include <map>
 #include <string>
-
+/*
 class SoundManager
 {
 public:
@@ -26,3 +26,4 @@ private:
 
 };
 
+*/
