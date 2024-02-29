@@ -2,10 +2,12 @@
 #define CUSTOM_MATHS_H
 
 #include "BasicIncludes.h"
+#include "Callbacks.h"
 #include <float.h>
 #include <cmath>
 #include <math.h>
 #include <SDL_stdinc.h>
+
 
 #define PI 3.141592653589793f
 
@@ -37,6 +39,10 @@ struct Vector2
 	{
 		x = xpos;
 		y = ypos;
+	}
+
+	void Print() {
+		cout << "X: " << x << " Y: " << y << endl;
 	}
 
 	float Length()
@@ -120,6 +126,15 @@ struct Vector2
 		result.y = this->y / scalar;
 
 		return result;
+	}
+
+	bool operator==(const Vector2& _vec)
+	{
+		float xAbs = x - _vec.x;
+		float yAbs = y - _vec.y;
+		xAbs = abs(xAbs);
+		yAbs = abs(yAbs);
+		return (xAbs == FLT_EPSILON && yAbs == FLT_EPSILON);
 	}
 
 	Vector2 Normalise()

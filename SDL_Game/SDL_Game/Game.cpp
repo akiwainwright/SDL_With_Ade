@@ -63,7 +63,9 @@ void Game::RunLoop()
 
 void Game::ProcessInput()
 {
+	int mouseX, mouseY ;
 	SDL_Event event;
+	
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
@@ -71,14 +73,29 @@ void Game::ProcessInput()
 			case SDL_QUIT:
 				m_IsRunning = false;
 				break;
+			case SDL_MOUSEBUTTONDOWN:
+
+				switch (event.button.button)
+				{
+				case SDL_BUTTON_LEFT:
+					SDL_GetMouseState(&mouseX, &mouseY);
+					//cout << mouseX << " " << mouseY << endl;
+					m_Ship->SetTarget(Vector2(mouseX, mouseY));
+					break;
+				}
+				break;
+			case SDL_KEYDOWN:
+				break;
 		}
 	}
 	
+
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
 		m_IsRunning = false;
 	}
+
 	for (auto actors : m_Actors)
 	{
 		GameObject* obj = dynamic_cast<GameObject*>(actors);
@@ -87,6 +104,56 @@ void Game::ProcessInput()
 			obj->ProcessInput(state);
 		}
 	}
+}
+
+//THIS IS JUST TO SHOW HOW TO USE MOUSE INPUT 
+void Game::ProcessMouseInput()
+{
+	int mouseX, mouseY;
+	SDL_Event event;
+
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			m_IsRunning = false;
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT://LEFT MOUSE BUTTON
+				break;
+			case SDL_BUTTON_RIGHT://RIGHT MOUSE BUTTON
+				break;
+			case SDL_BUTTON_MIDDLE://MIDDLE MOUSE BUTTON
+				break;
+			}
+			break;
+		case SDL_MOUSEMOTION://active mouse movement
+
+			//cout << mouseX << " " << mouseY << endl;
+			break;
+		case SDL_MOUSEWHEEL:// mouse wheel scroll movement
+			if (event.wheel.y > 0)//mouse wheel is scrolling up
+			{
+
+			}
+			if (event.wheel.y < 0)//mouse wheel is scrolling down
+			{
+
+			}
+			break;
+
+		}
+	}
+
+	if (SDL_GetMouseState(&mouseX, &mouseY) && SDL_BUTTON_LEFT)// holding left mouse button
+	{
+		cout << "sdl" << endl;
+	}
+	
+
 }
 
 void Game::UpdateGame()

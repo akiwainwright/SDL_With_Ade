@@ -22,6 +22,7 @@ public:
 	SDL_Texture* GetTexture(const std::string& _fileName);
 private:
 	void ProcessInput();
+	void ProcessMouseInput();
 	void UpdateGame();
 	void GenerateOutput();
 	void LoadData();

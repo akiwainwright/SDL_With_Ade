@@ -16,6 +16,15 @@ public:
 	void SetScale(const Vector2& scale) { m_Scale = scale; }
 	float GetRotation() { return m_Rotation; }
 	void SetRotation(float rotation) { m_Rotation = rotation; }
+	void SetRotation(const Vector2& _pos);
+
+	Vector2 GetForward() const { return Vector2(cos(m_Rotation),-sin(m_Rotation)); }
+	Vector2 GetRight() const { return Vector2(cosf(m_Rotation + degToRad(90)), -sinf(m_Rotation + degToRad(90))); }
+
+	//functions
+	//LookAt - Rotates the transform so the forward vector points at /target/'s current position
+	//RotateAround - Rotates the transform about axis passing through point in world coordinates by angle degrees or radians
+	//Translate(Vector2 translation) - Moves the transform in the direction and distance of translation
 
 
 	//const Vector2& GetPosition() const { return m_Position; }

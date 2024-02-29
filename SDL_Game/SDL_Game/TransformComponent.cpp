@@ -14,3 +14,13 @@ void TransformComponent::Update(float _deltaTime)
 {
 	
 }
+
+void TransformComponent::SetRotation(const Vector2& _pos)
+{
+	Vector2 dir =  _pos - m_Position;
+	dir.Normalised();
+	//float dotResult = Vector2::DotProduct(GetForward(), _pos);
+	//float angle = acos(dotResult);
+	float angle = atan2(-dir.y,dir.x);
+	SetRotation(angle);
+}
