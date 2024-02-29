@@ -14,17 +14,17 @@ public:
 	// Set the textures used for the background
 	void SetBGTextures(const std::vector<SDL_Texture*>& textures);
 	// Get/set screen size and scroll speed
-	void SetScreenSize(const Vector2& size) { mScreenSize = size; }
-	void SetScrollSpeed(float speed) { mScrollSpeed = speed; }
-	float GetScrollSpeed() const { return mScrollSpeed; }
+	void SetScreenSize(const Vector2& size) { m_ScreenSize = size; }
+	void SetScrollSpeed(float speed) { m_ScrollSpeed = speed; }
+	float GetScrollSpeed() const { return m_ScrollSpeed; }
 private:
 	// Struct to encapsulate each bg image and its offset
 	struct BGTexture
 	{
-		SDL_Texture* mTexture;
-		Vector2 mOffset;
+		SDL_Texture* m_Texture;
+		Vector2 m_Offset;
 	};
-	std::vector<BGTexture> mBGTextures;
-	Vector2 mScreenSize;
-	float mScrollSpeed;
+	std::vector<BGTexture> m_BGTextures;
+	Vector2 m_ScreenSize;
+	float m_ScrollSpeed;
 };
