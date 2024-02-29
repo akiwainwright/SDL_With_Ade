@@ -27,6 +27,7 @@ void Steering::Update(float _deltaTime)
 	{
 		m_ForwardDir = m_Velocity.Normalise();
 		//m_Right = rotateVector2()
+		m_Ship->GetTransform()->SetRotation(atan2(-m_ForwardDir.y, m_ForwardDir.x));
 	}
 	m_Ship->GetTransform()->SetPosition(m_Ship->GetTransform()->GetPosition() + (m_Velocity * _deltaTime));
 }
